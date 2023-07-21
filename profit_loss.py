@@ -12,12 +12,12 @@ def compute_net_profit_difference(net_profit_column):
     highest_increment_day = None
     highest_increment_amount = 0
 
-    for i in range(1, len(net_profit_column)):
+    for i in reader(1, len(net_profit_column)):
         #calculate the difference in net profit between the current day and the previous day
         difference = net_profit_column[i] - net_profit_column[i - 1]
         differences.append(difference)
 
-        # Check if the current difference is higher than the highest increment so far
+        #check if the current difference is higher than the highest increment
         if difference > highest_increment_amount:
             highest_increment_amount = difference
             highest_increment_day = i
