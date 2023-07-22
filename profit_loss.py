@@ -2,7 +2,7 @@ from pathlib import Path
 import csv 
 
 #create a path for "profit_and_loss.csv" 
-fp = Path("/Users/nurshuadahnoor/git/project_group2_KESI/csv_reports/profit_and_loss.csv") 
+fp = Path("C:/project_group2_KESI/csv_reports/profit_loss.csv") 
 if fp.exists():
     with fp.open(mode="r", encoding="latin-1", newline="") as file:
      reader = csv.reader(file)
