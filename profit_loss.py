@@ -2,10 +2,10 @@ from pathlib import Path
 import csv 
 
 #create a path for "profit_and_loss.csv" 
-fp = Path("C:/project_group2_KESI/csv_reports/profit_loss.csv") 
-with fp.open(mode="r", encoding="latin-1", newline="") as file:
-#create a "csv reader" object
-     reader= csv.reader(file)
+fp = Path("csv_reports/profit_and_loss.csv") 
+if fp.exists():
+    with fp.open(mode="r", encoding="latin-1", newline="") as file:
+     reader = csv.reader(file)
 
 def compute_net_profit_difference(net_profit_column):
     differences = []
