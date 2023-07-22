@@ -10,6 +10,29 @@ with fp.open(mode="r", encoding="latin-1", newline="") as file:
 
     for row in reader: 
         cashOnHand.append ([row[0],row[1]])
+        
+    cashOnHandData = cashOnHand[1:]
+    
+def highest_COH_increment (cashOnHandData):
 
-def cash_on_hand():
-    for 
+    highest_increment_day = 0 
+    highest_increment_amount = 0 
+    prev_cash_on_hand = int(cashOnHand[1][1])
+    increment = 0
+
+    for data in cashOnHandData:
+        day = data[0]
+        cash_on_hand = int(data[1])
+    
+        if cash_on_hand < prev_cash_on_hand:
+            increment = prev_cash_on_hand - cash_on_hand
+            
+        if increment > highest_increment_amount:
+            highest_increment_amount = increment
+            highest_increment_day = day
+
+        prev_cash_on_hand = cash_on_hand 
+
+    print (f"[HIGHEST CASH SURPLUS] DAY: {highest_increment_day}, AMOUNT: {highest_increment_amount}")
+
+highest_COH_increment(cashOnHandData)
