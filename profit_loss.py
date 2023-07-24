@@ -32,6 +32,6 @@ with fp.open(mode="r", encoding="latin-1", newline="") as file:
         summary_file.write("\n[NET PROFIT SURPLUS] NET PROFIT DOES NOT INCREASE ON EVERY DAY\n")
 
     print("All differences:", differences)
-    summary_file.write(f"Day {day}: Net profit difference - ${diff}\n")
+    summary_file.write(f"Day {day}: Net profit difference - ${differences}\n")
 
     
