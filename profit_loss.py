@@ -1,9 +1,7 @@
-from pathlib import Path 
+from pathlib import Path
 import csv
-
-def profit_and_loss():
-    fp = Path.cwd() / 'profit_and_loss.csv'
-    with fp.open(mode="r", encoding="latin-1", newline="") as file:
+def profit_and_loss(fp):
+    with open(fp, mode="r", newline="") as file:
         reader = csv.reader(file)
         next(reader)
         next(reader)
@@ -28,19 +26,16 @@ def profit_and_loss():
             if difference < 0:
                 deficit_days.append((i + 1, abs(difference)))
 
-    file_path = Path.cwd() / 'summary_report.txt'
-    file_path.touch()
-
-    with open("summary_report.txt", "w") as summary_file:
+    with open("summary_report.txt", "w") as summary_report:
         if all(diff >= 0 for diff in differences):
             print("[NET PROFIT SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN PREVIOUS DAY")
-            summary_file.write("[NET PROFIT SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN PREVIOUS DAY\n")
+            summary_report.write("[NET PROFIT SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN PREVIOUS DAY\n")
 
             if highest_increment_day >= 0:
                 day = highest_increment_day + 1
-                summary_file.write(f"[HIGHEST NET PROFIT SURPLUS] DAY: {day}, AMOUNT: USD {highest_increment_amount}\n")
+                summary_report.write(f"[HIGHEST NET PROFIT SURPLUS] DAY: {day}, AMOUNT: USD {highest_increment_amount}\n")
         else:
-            summary_file.write("[PROFIT DEFICIT] NET PROFIT ON SOME DAYS IS LOWER THAN PREVIOUS DAY\n")
+            summary_report.write("[PROFIT DEFICIT] NET PROFIT ON SOME DAYS IS LOWER THAN PREVIOUS DAY\n")
 
             for day, amount in deficit_days:
-                summary_file.write(f"[PROFIT DEFICIT] DAY: {day}, AMOUNT: USD {int(amount)}")
+                summary_report.write(f"[PROFIT DEFICIT] DAY: {day}, AMOUNT: USD {int(amount)}\n")

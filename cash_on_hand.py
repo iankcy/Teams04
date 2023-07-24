@@ -1,8 +1,8 @@
 from pathlib import Path
 import csv
-def cash_on_hand():
-    fp = Path.cwd() / 'cash_on_hand.csv'
-    with fp.open(mode="r", encoding="latin-1", newline="") as file:
+
+def cash_on_hand(fp):
+    with open(fp,mode="r", newline="") as file:
         reader = csv.reader(file)
 
         next(reader)
@@ -28,12 +28,12 @@ def cash_on_hand():
                 max_cash_on_hand = difference
                 max_day = days[i]
 
-    file_path = Path.cwd() / 'summary_file.txt'
-    with open(file_path, "w") as summary_file:
+    file_path = Path.cwd() / 'summary_report.txt'
+    file_path.touch()
+    with open(file_path, "w") as summary_report:
         if surplus:
-            summary_file.write("[CASH SURPLUS] CASH ON EACH DAY IS HIGHER THAN THE PREVIOUS DAY\n")
-            summary_file.write(f"[HIGHEST CASH SURPLUS] DAY: {max_day}, AMOUNT: USD {max_cash_on_hand}\n")
+            summary_report.write("[CASH SURPLUS] CASH ON EACH DAY IS HIGHER THAN THE PREVIOUS DAY\n")
+            summary_report.write(f"[HIGHEST CASH SURPLUS] DAY: {max_day}, AMOUNT: USD {max_cash_on_hand}\n")
         else:
-            summary_file.write("[CASH DEFICIT] CASH ON SOME DAYS IS LOWER THAN THE PREVIOUS DAY\n")
             for day, amount in deficits:
-                summary_file.write(f"[CASH DEFICIT] DAY: {day}, AMOUNT: USD {int(amount)}\n")
+                summary_report.write(f"[CASH DEFICIT] DAY: {day}, AMOUNT: USD {int(amount)}\n")
