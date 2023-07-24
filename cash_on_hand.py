@@ -21,11 +21,15 @@ def cash_on_hand(cashOnHand):
     for i in range(1, len(cashOnHand)):
       increasing = all(cashOnHand[i] > cashOnHand[i-1] for i in range (1, len(cashOnHand)))
     if increasing == True:
-      print ("cash surplus")
-    if increasing == False:
-      print ('cash deficit')
+      print ("[CASH SURPLUS]")
+    
+    
+    
+    
+    
     difference = cashOnHand[i]-cashOnHand[i-1]
     if difference > 0 :
+
         print("CASH SURPLUS")
 
 print(cash_on_hand(cashOnHand))
