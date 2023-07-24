@@ -31,3 +31,5 @@ def find_highest_overhead(fp):
     file_path.touch()
     with open(file_path, "w") as summary_report:
         summary_report.write(output_str + "\n")
+
+find_highest_overhead('./csv_reports/overheads.csv')

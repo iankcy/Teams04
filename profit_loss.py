@@ -25,8 +25,9 @@ def profit_and_loss(fp):
 
             if difference < 0:
                 deficit_days.append((i + 1, abs(difference)))
-
-    with open("summary_report.txt", "w") as summary_report:
+    file_path=Path.cwd() / 'file3.txt'
+    file_path.touch()
+    with open("file3.txt", "w") as summary_report:
         if all(diff >= 0 for diff in differences):
             print("[NET PROFIT SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN PREVIOUS DAY")
             summary_report.write("[NET PROFIT SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN PREVIOUS DAY\n")

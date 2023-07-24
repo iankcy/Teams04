@@ -28,7 +28,7 @@ def cash_on_hand(fp):
                 max_cash_on_hand = difference
                 max_day = days[i]
 
-    file_path = Path.cwd() / 'summary_report.txt'
+    file_path = Path.cwd() / 'file2.txt'
     file_path.touch()
     with open(file_path, "w") as summary_report:
         if surplus:
