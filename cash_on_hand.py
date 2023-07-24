@@ -39,4 +39,17 @@ print(cash_on_hand(cashOnHand))
         #print("CASH SURPLUS")
    
     #print (f"[HIGHEST CASH SURPLUS] DAY: {highest_increment_day}, AMOUNT: {highest_increment_amount}")
+
+  with open("summary_report.txt", "w") as summary_file:
+    if all(diff >= 0 for diff in differences):
+        summary_file.write("[NET PROFIT SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN PREVIOUS DAY\n")
+
+        if highest_increment_day is not None:
+            day = highest_increment_day + 1  # Adding 1 to account for 0-indexed list
+            summary_file.write(f"[HIGHEST NET PROFIT SURPLUS] DAY: {day}, AMOUNT: USD {highest_increment_amount}\n")
+    else:
+        summary_file.write("[PROFIT DEFICIT] NET PROFIT ON SOME DAYS IS LOWER THAN PREVIOUS DAY\n")
+
+        for day, amount in deficit_days:
+            summary_file.write(f"[PROFIT DEFICIT] DAY: {day}, AMOUNT: USD {amount}\n")
     
