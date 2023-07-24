@@ -5,40 +5,38 @@ fp = Path.cwd()/"csv_reports\cash_on_hand.csv"
 with fp.open(mode="r", encoding="latin-1", newline="") as file:
     reader = csv.reader(file)
     next(reader)
+    next(reader)
 
+    days = []
     cashOnHand = []
 
     for row in reader: 
-        cashOnHand.append ([row[0],row[1]])
+        days.append (row[0])
+        cashOnHand.append (float(row[1]))
+    
+#def highest_COH_increment (cashOnHand):
+    
+def cash_on_hand(cashOnHand):
+
+    for i in range(1, len(cashOnHand)):
+      increasing = all(cashOnHand[i] > cashOnHand[i-1] for i in range (1, len(cashOnHand)))
+    if increasing == True:
+      print ("cash surplus")
+    if increasing == False:
+      print ('cash deficit')
+    difference = cashOnHand[i]-cashOnHand[i-1]
+    if difference > 0 :
+        print("CASH SURPLUS")
+
+print(cash_on_hand(cashOnHand))
+    #print (f"[HIGHEST CASH SURPLUS] DAY: {highest_increment_day}, AMOUNT: {highest_increment_amount}")
+        #difference = cashOnHand[i]-cashOnHand[i-1]
+        #differenceList.append(difference)
         
-    cashOnHandData = cashOnHand[1:]
+    #increasingCOH = all(differenceList[i]) > (differenceList[i - 1]) for i in range(1, len(differenceList))
     
-def highest_COH_increment (cashOnHandData):
-
-    highest_increment_day = 0 
-    highest_increment_amount = 0 
-    prev_cash_on_hand = int(cashOnHand[1][1])
-    increment = 0
-
-    for data in cashOnHandData:
-        day = data[0]
-        cash_on_hand = int(data[1])
-
-        for i in range(1,len(cashOnHand)):
-            if cashOnHand[i]> cashOnHand[i-1]:
-                print ("[CASH SURPLUS] CASH ON EACH DAY IS HIGHER THAN THE PREVIOUS DAY")
-        if cash_on_hand < prev_cash_on_hand:
-            increment = prev_cash_on_hand - cash_on_hand
-            
-            if increment > highest_increment_amount:
-                highest_increment_amount = increment
-                highest_increment_day = day
-        
-        prev_cash_on_hand = cash_on_hand 
-    print (f"[HIGHEST CASH SURPLUS] DAY: {highest_increment_day}, AMOUNT: {highest_increment_amount}")
+    #if increasingCOH: 
+        #print("CASH SURPLUS")
+   
+    #print (f"[HIGHEST CASH SURPLUS] DAY: {highest_increment_day}, AMOUNT: {highest_increment_amount}")
     
-
-
-    
-
-highest_COH_increment(cashOnHandData)
