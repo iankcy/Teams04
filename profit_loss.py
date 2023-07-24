@@ -28,10 +28,10 @@ with fp.open(mode="r", encoding="latin-1", newline="") as file:
         summary_file.write("\n[NET PROFIT SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN PREVIOUS DAY\n")
 
      else:
-        print("[NET PROFIT SURPLUS] NET PROFIT DOES NOT INCREASE ON EVERY DAY")
-        summary_file.write("\n[NET PROFIT SURPLUS] NET PROFIT DOES NOT INCREASE ON EVERY DAY\n")
+        print("[NET PROFIT SURPLUS] NET PROFIT DOES NOT INCREASE THAN THE PREVIOUS DAY")
+        summary_file.write("\n[NET PROFIT SURPLUS] NET PROFIT DOES NOT INCREASE THAN THE PREVIOUS DAY\n")
 
     print("All differences:", differences)
-    summary_file.write(f"Day {day}: Net profit values - ${difference}\n")
+    summary_file.write(f"Day {day}: Amount USD{difference}")
 
     
