@@ -29,16 +29,6 @@ def cash_on_hand(cashOnHand):
         print("CASH SURPLUS")
 
 print(cash_on_hand(cashOnHand))
-    #print (f"[HIGHEST CASH SURPLUS] DAY: {highest_increment_day}, AMOUNT: {highest_increment_amount}")
-        #difference = cashOnHand[i]-cashOnHand[i-1]
-        #differenceList.append(difference)
-        
-    #increasingCOH = all(differenceList[i]) > (differenceList[i - 1]) for i in range(1, len(differenceList))
-    
-    #if increasingCOH: 
-        #print("CASH SURPLUS")
-   
-    #print (f"[HIGHEST CASH SURPLUS] DAY: {highest_increment_day}, AMOUNT: {highest_increment_amount}")
   
 file_path = Path.cwd() / 'summary_report.txt'
 file_path.touch()
