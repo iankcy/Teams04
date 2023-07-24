@@ -24,12 +24,5 @@ def find_highest_overhead(fp):
     # Calculate the percentage of the highest overhead category out of the total overheads
     highest_overhead_percentage = (highest_overhead / total_overheads) * 100
 
-    # Generate the output
-    output_str = f"[HIGHEST OVERHEAD] {highest_category}: {round(highest_overhead_percentage,2)}%"
-
-    file_path = Path.cwd() / 'summary_report.txt'
-    file_path.touch()
-    with open(file_path, "w") as summary_report:
-        summary_report.write(output_str + "\n")
-
-find_highest_overhead('./csv_reports/overheads.csv')
+    # return the output
+    return f"[HIGHEST OVERHEAD] {highest_category}: {round(highest_overhead_percentage,2)}%"

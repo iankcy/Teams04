@@ -28,12 +28,7 @@ def cash_on_hand(fp):
                 max_cash_on_hand = difference
                 max_day = days[i]
 
-    file_path = Path.cwd() / 'file2.txt'
-    file_path.touch()
-    with open(file_path, "w") as summary_report:
-        if surplus:
-            summary_report.write("[CASH SURPLUS] CASH ON EACH DAY IS HIGHER THAN THE PREVIOUS DAY\n")
-            summary_report.write(f"[HIGHEST CASH SURPLUS] DAY: {max_day}, AMOUNT: USD {max_cash_on_hand}\n")
-        else:
-            for day, amount in deficits:
-                summary_report.write(f"[CASH DEFICIT] DAY: {day}, AMOUNT: USD {int(amount)}\n")
+    if surplus:
+        return (surplus, (max_day, max_cash_on_hand))
+    else:
+        return (surplus, deficits)

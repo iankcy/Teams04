@@ -1,42 +1,34 @@
 from pathlib import Path
 import csv
+
 def profit_and_loss(fp):
-    with open(fp, mode="r", newline="") as file:
+    with open(fp,mode="r", newline="") as file:
         reader = csv.reader(file)
+
         next(reader)
         next(reader)
+        days = []
+        net_profit = []
+        for row in reader:
+            days.append(row[0])
+            net_profit.append(float(row[-1]))
 
-        empty_dict = {}
-        for day, sales, trading_profit, operating_expense, net_profit in reader:
-            empty_dict[day] = float(net_profit)
-        differences = []
-        deficit_days = []
-        net_profit_values = list(empty_dict.values())
-        highest_increment_day = -1
-        highest_increment_amount = 0
+    max_net_profit = 0
+    max_day = ""
+    surplus = True
+    deficits = []
 
-        for i in range(1, len(net_profit_values)):
-            difference = net_profit_values[i] - net_profit_values[i - 1]
-            differences.append(difference)
-
-            if difference > highest_increment_amount:
-                highest_increment_amount = difference
-                highest_increment_day = i
-
-            if difference < 0:
-                deficit_days.append((i + 1, abs(difference)))
-    file_path=Path.cwd() / 'file3.txt'
-    file_path.touch()
-    with open("file3.txt", "w") as summary_report:
-        if all(diff >= 0 for diff in differences):
-            print("[NET PROFIT SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN PREVIOUS DAY")
-            summary_report.write("[NET PROFIT SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN PREVIOUS DAY\n")
-
-            if highest_increment_day >= 0:
-                day = highest_increment_day + 1
-                summary_report.write(f"[HIGHEST NET PROFIT SURPLUS] DAY: {day}, AMOUNT: USD {highest_increment_amount}\n")
+    for i in range(1, len(net_profit)):
+        difference = net_profit[i] - net_profit[i - 1]
+        if difference < 0:
+            surplus = False
+            deficits.append((days[i], abs(difference)))
         else:
-            summary_report.write("[PROFIT DEFICIT] NET PROFIT ON SOME DAYS IS LOWER THAN PREVIOUS DAY\n")
+            if difference > max_net_profit:
+                max_net_profit = difference
+                max_day = days[i]
 
-            for day, amount in deficit_days:
-                summary_report.write(f"[PROFIT DEFICIT] DAY: {day}, AMOUNT: USD {int(amount)}\n")
+    if surplus:
+        return (surplus, (max_day, max_net_profit))
+    else:
+        return (surplus, deficits)
