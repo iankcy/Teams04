@@ -2,15 +2,13 @@ from pathlib import Path
 import csv
 
 
-def find_highest_overhead():
+def find_highest_overhead(fp):
     highest_overhead = 0
     highest_category = ""
 
     total_overheads = 0  # To calculate the total overhead percentage
 
-    fp = Path.cwd() / 'overheads.csv'
-
-    with fp.open(mode="r", encoding="latin-1", newline="") as file:
+    with open(fp, mode="r", encoding="latin-1", newline="") as file:
         reader = csv.reader(file)
         next(reader)
         next(reader)
@@ -33,3 +31,4 @@ def find_highest_overhead():
     file_path.touch()
     with open(file_path, "w") as summary_file:
         summary_file.write(output_str + "\n")
+find_highest_overhead("./csv_reports/overheads.csv")

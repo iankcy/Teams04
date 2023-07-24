@@ -1,8 +1,7 @@
 from pathlib import Path
 import csv
-
 def cash_on_hand():
-    fp = Path.cwd() / 'cash-on_hand.csv'
+    fp = Path.cwd() / 'cash_on_hand.csv'
     with fp.open(mode="r", encoding="latin-1", newline="") as file:
         reader = csv.reader(file)
 
