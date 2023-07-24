@@ -7,14 +7,14 @@ if fp.exists():
     with fp.open(mode="r", encoding="latin-1", newline="") as file:
      reader = csv.reader(file)
 
-def compute_net_profit_difference(net_profit_column):
+def compute_netprofit_difference(netprofit_column):
     differences = []
     highest_increment_day = None
     highest_increment_amount = 0
 
-    for i in range(1, len(net_profit_column)):
+    for i in range(1, len(netprofit_column)):
         #calculate the difference "-" in net profit between the current day "i"  and the previous day "1"
-        difference = net_profit_column[i] - net_profit_column[i - 1]
+        difference = netprofit_column[i] - netprofit_column[i - 1]
         differences.append(difference)
 
         #check if the current difference is higher than the highest increment
@@ -33,8 +33,8 @@ def compute_net_profit_difference(net_profit_column):
     
 #check for surplus
     surplus_count = 0
-    for i in range(1, len(net_profit_column)):
-        if net_profit_column[i] > net_profit_column[i - 1]:
+    for i in range(1, len(netprofit_column)):
+        if netprofit_column[i] > netprofit_column[i - 1]:
             surplus_count += 1
 
 # Write the results to the "summary_report.txt" file
@@ -46,7 +46,7 @@ def compute_net_profit_difference(net_profit_column):
     summary_file.write(f"\nHighest increment occurred on Day {highest_increment_day + 1}, "
                            f"with an amount of ${highest_increment_amount}\n")
 
-    if surplus_count == len(net_profit_column) - 1:
+    if surplus_count == len(netprofit_column) - 1:
             summary_file.write("\n[NET PROFIT SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN PREVIOUS DAY\n")
     else:
         summary_file.write("\n[NET PROFIT SURPLUS] NET PROFIT DOES NOT INCREASE ON EVERY DAY\n")
