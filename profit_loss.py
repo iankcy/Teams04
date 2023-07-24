@@ -2,7 +2,7 @@ from pathlib import Path
 import csv
 
 # Create a path for "profit_and_loss.csv"
-fp = Path.cwd() / 'profit_and_loss.csv'
+fp = Path.cwd() / 'C:\project_group2_KESI\csv_reports\profit_and_loss.csv'
 with fp.open(mode="r", encoding="latin-1", newline="") as file:
     reader = csv.reader(file)
     next(reader)
@@ -32,6 +32,7 @@ with fp.open(mode="r", encoding="latin-1", newline="") as file:
         summary_file.write("\n[NET PROFIT SURPLUS] NET PROFIT DOES NOT INCREASE THAN THE PREVIOUS DAY\n")
 
     print("All differences:", differences)
+
     summary_file.write(f"Day {day}: Amount USD{difference}")
 
     
