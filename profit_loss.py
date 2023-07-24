@@ -21,17 +21,16 @@ with fp.open(mode="r", encoding="latin-1", newline="") as file:
     increasing = all(abs(differences[i]) > abs(differences[i - 1]) for i in range(1, len(differences)))
 
 # Write the results to the "summary_report.txt" file
-    with open("summary_report.txt", "w") as summary_file:
+with open("summary_report.txt", "w") as summary_file:
+    if all(diff >= 0 for diff in differences):
+        summary_file.write("[NET PROFIT SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN PREVIOUS DAY\n")
 
-     if increasing:
-        print("NET PROFIT SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN PREVIOUS DAY")
-        summary_file.write("\n[NET PROFIT SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN PREVIOUS DAY\n")
+        if highest_increment_day is not None:
+            day = highest_increment_day + 1  # Adding 1 to account for 0-indexed list
+            summary_file.write(f"[HIGHEST NET PROFIT SURPLUS] DAY: {day}, AMOUNT: USD {highest_increment_amount}\n")
+    else:
+        summary_file.write("[PROFIT DEFICIT] NET PROFIT ON SOME DAYS IS LOWER THAN PREVIOUS DAY\n")
 
-     else:
-        print("[NET PROFIT SURPLUS] NET PROFIT DOES NOT INCREASE THAN THE PREVIOUS DAY")
-        summary_file.write("\n[NET PROFIT SURPLUS] NET PROFIT DOES NOT INCREASE THAN THE PREVIOUS DAY\n")
-
-    print("All differences:", differences)
-    summary_file.write(f"Day {day}: Amount USD{difference}")
-
+        for day, amount in deficit_days:
+            summary_file.write(f"[PROFIT DEFICIT] DAY: {day}, AMOUNT: USD {amount}\n")    
     
