@@ -1,7 +1,7 @@
 from pathlib import Path 
 import csv 
 
-fp = Path("C:\IGP_PFB_git\project_group2_KESI\csv_reports\cash-onhand.csv")
+fp = Path.cwd()/"csv_reports\cash_on_hand.csv"
 with fp.open(mode="r", encoding="latin-1", newline="") as file:
     reader = csv.reader(file)
     next(reader)
@@ -23,16 +23,22 @@ def highest_COH_increment (cashOnHandData):
     for data in cashOnHandData:
         day = data[0]
         cash_on_hand = int(data[1])
-    
+
+        for i in range(1,len(cashOnHand)):
+            if cashOnHand[i]> cashOnHand[i-1]:
+                print ("[CASH SURPLUS] CASH ON EACH DAY IS HIGHER THAN THE PREVIOUS DAY")
         if cash_on_hand < prev_cash_on_hand:
             increment = prev_cash_on_hand - cash_on_hand
             
-        if increment > highest_increment_amount:
-            highest_increment_amount = increment
-            highest_increment_day = day
-
+            if increment > highest_increment_amount:
+                highest_increment_amount = increment
+                highest_increment_day = day
+        
         prev_cash_on_hand = cash_on_hand 
-
     print (f"[HIGHEST CASH SURPLUS] DAY: {highest_increment_day}, AMOUNT: {highest_increment_amount}")
+    
+
+
+    
 
 highest_COH_increment(cashOnHandData)
