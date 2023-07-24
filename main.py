@@ -5,12 +5,12 @@ from pathlib import Path
 def main():
     cash_surplus, cash = cash_on_hand("./csv_reports/cash_on_hand.csv")
     net_profit_surplus, net_profit = profit_and_loss("./csv_reports/profit_and_loss.csv")
-    profit_and_loss('./csv_reports/profit_and_loss.csv')
+    profit_and_loss("./csv_reports/profit_and_loss.csv")
     with open("summary_report.txt", "w") as new_file:
         new_file.write(find_highest_overhead('./csv_reports/overheads.csv'))
 
         if cash_surplus:
-            new_file.write("[CASH SURPLUS] CASH ON EACH DAY IS HIGHER THAN THE PREVIOUS DAY\n")
+            new_file.write("\n[CASH SURPLUS] CASH ON EACH DAY IS HIGHER THAN THE PREVIOUS DAY\n")
             new_file.write(f"[HIGHEST CASH SURPLUS] DAY: {cash[0]}, AMOUNT: USD{int(cash[1])}\n")
         else:
             for deficit in cash:
