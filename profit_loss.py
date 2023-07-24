@@ -13,7 +13,7 @@ def compute_net_profit_difference(net_profit_column):
     highest_increment_amount = 0
 
     for i in range(1, len(net_profit_column)):
-        #calculate the difference in net profit between the current day and the previous day
+        #calculate the difference "-" in net profit between the current day "i"  and the previous day "1"
         difference = net_profit_column[i] - net_profit_column[i - 1]
         differences.append(difference)
 
@@ -40,14 +40,14 @@ def compute_net_profit_difference(net_profit_column):
 # Write the results to the "summary_report.txt" file
     with open("summary_report.txt", "w") as summary_file:
         summary_file.write("Net Profit Differences:\n")
-        for day, diff in enumerate(differences, 1):
+    for day, diff in enumerate(differences, 1):
             summary_file.write(f"Day {day}: Net profit difference - ${diff}\n")
 
-        summary_file.write(f"\nHighest increment occurred on Day {highest_increment_day + 1}, "
+    summary_file.write(f"\nHighest increment occurred on Day {highest_increment_day + 1}, "
                            f"with an amount of ${highest_increment_amount}\n")
 
-        if surplus_count == len(net_profit_column) - 1:
+    if surplus_count == len(net_profit_column) - 1:
             summary_file.write("\n[NET PROFIT SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN PREVIOUS DAY\n")
-        else:
-            summary_file.write("\n[NET PROFIT SURPLUS] NET PROFIT DOES NOT INCREASE ON EVERY DAY\n")
+    else:
+        summary_file.write("\n[NET PROFIT SURPLUS] NET PROFIT DOES NOT INCREASE ON EVERY DAY\n")
        
