@@ -15,46 +15,35 @@ with fp.open(mode="r", encoding="latin-1", newline="") as file:
         cashOnHand.append (float(row[1]))
     
 #def highest_COH_increment (cashOnHand):
-    
+differenceList=[]  
+deficit_days=[]
 def cash_on_hand(cashOnHand):
 
     for i in range(1, len(cashOnHand)):
-      increasing = all(cashOnHand[i] > cashOnHand[i-1] for i in range (1, len(cashOnHand)))
-    if increasing == True:
-      print ("[CASH SURPLUS]")
-    
-    
-    
-    
-    
-    difference = cashOnHand[i]-cashOnHand[i-1]
-    if difference > 0 :
+        difference = cashOnHand[i] - cashOnHand[i - 1]
+        differenceList.append(difference)
 
-        print("CASH SURPLUS")
+        if difference > highest_increment_amount:
+            highest_increment_amount = difference
+            highest_increment_day = i
+
+        if difference < 0:
+            deficit_days.append((i + 1, abs(difference)))
 
 print(cash_on_hand(cashOnHand))
-    #print (f"[HIGHEST CASH SURPLUS] DAY: {highest_increment_day}, AMOUNT: {highest_increment_amount}")
-        #difference = cashOnHand[i]-cashOnHand[i-1]
-        #differenceList.append(difference)
-        
-    #increasingCOH = all(differenceList[i]) > (differenceList[i - 1]) for i in range(1, len(differenceList))
-    
-    #if increasingCOH: 
-        #print("CASH SURPLUS")
    
-    #print (f"[HIGHEST CASH SURPLUS] DAY: {highest_increment_day}, AMOUNT: {highest_increment_amount}")
   
 file_path = Path.cwd() / 'summary_report.txt'
 file_path.touch()
 
 with open("summary_report.txt", "w") as summary_file:
-    if all(diff >= 0 for diff in differences):
-        print("[NET PROFIT SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN PREVIOUS DAY")
-        summary_file.write("[NET PROFIT SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN PREVIOUS DAY\n")
+    if all(diff >= 0 for diff in differenceList):
+        print("[CASH SURPLUS] CASH ON EACH DAY IS HIGHER THAN PREVIOUS DAY")
+        summary_file.write("[CASH SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN PREVIOUS DAY\n")
 
         if highest_increment_day >= 0:
             day = highest_increment_day + 1
-            summary_file.write(f"[HIGHEST NET PROFIT SURPLUS] DAY: {day}, AMOUNT: USD {highest_increment_amount}\n")
+            summary_file.write(f"[HIGHEST CASH SURPLUS] DAY: {day}, AMOUNT: USD {highest_increment_amount}\n")
     else:
         summary_file.write("[PROFIT DEFICIT] NET PROFIT ON SOME DAYS IS LOWER THAN PREVIOUS DAY\n")
 
