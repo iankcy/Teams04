@@ -1,7 +1,10 @@
 from overheads import find_highest_overhead
 from cash_on_hand import cash_on_hand 
 from profit_loss import profit_and_loss 
-def main(): 
+def main():
+    '''
+    This function combines the three other functions of overhead, cash on hand, and profit and loss and writes the computed amount to a text file named summary_report.txt.
+    ''' 
     # Extract cash on hand surplus/deficit and highest cash increment data
     cash_surplus, cash = cash_on_hand("./csv_reports/cash_on_hand.csv") 
     # Extract net profit surplus/deficit and highest net profit increment data
