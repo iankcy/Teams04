@@ -10,8 +10,8 @@ def profit_and_loss(fp):
  
         next(reader) # Skip the header
         next(reader) # Skip the second line
-        days = [] 
-        net_profit = [] 
+        days = []  # To store the days for profit and loss data
+        net_profit = [] # To store the net profit values for corresponding days
         # Extract data from the CSV file
         for row in reader: 
             days.append(row[0]) 

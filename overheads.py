@@ -5,10 +5,10 @@ def find_highest_overhead(fp):
     '''
     This function is to help find the highest overhead and print out the category as well as the value in percentage. 
     '''
-    highest_overhead = 0 
-    highest_category = "" 
+    highest_overhead = 0  # To store the highest overhead value
+    highest_category = "" # To store the category with the highest overhead
     
-    # To calculate the total overhead percentage 
+    # Initialize variable to calculate the total overhead percentage
     total_overheads = 0  
  
     # Open the CSV file for reading
@@ -30,5 +30,5 @@ def find_highest_overhead(fp):
     # Calculate the percentage of the highest overhead category out of the total overheads 
     highest_overhead_percentage = (highest_overhead / total_overheads) * 100 
  
-    # Return the output 
+    # Return the formatted output with the highest overhead category and its percentage
     return f"[HIGHEST OVERHEAD] {highest_category}: {round(highest_overhead_percentage,2)}%"
