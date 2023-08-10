@@ -16,11 +16,12 @@ def profit_and_loss(fp):
         for row in reader: 
             days.append(row[0]) 
             net_profit.append(float(row[-1])) 
- 
-    max_net_profit = 0 
-    max_day = "" 
-    surplus = True 
-    deficits = [] 
+    
+    # Initialize variables to keep track of maximum net profit increase, corresponding day, surplus status, and deficits
+    max_net_profit = 0 # To store the maximum increase in net profit
+    max_day = "" # To store the day with the highest net profit increase
+    surplus = True  # Flag to indicate if there is a surplus of net profit
+    deficits = []  # List to store tuples of days and corresponding deficit amounts
  
     # To analyse the profit and loss data to identify whether it is surplus or deficit with the following requirements
     for i in range(1, len(net_profit)): 
