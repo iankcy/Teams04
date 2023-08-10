@@ -10,8 +10,8 @@ def cash_on_hand(fp):
 
         next(reader) # Skip the header
         next(reader) # Skip the second line
-        days = []
-        cash_on_hand = []
+        days = []  # To store the days for cash on hand data
+        cash_on_hand = [] # To store the cash on hand values for corresponding days
         # Extract data from the CSV file
         for row in reader:
             days.append(row[0])
