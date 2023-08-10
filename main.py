@@ -1,3 +1,4 @@
+# Import functions from separate modules for finding highest overhead, cash on hand, and profit and loss
 from overheads import find_highest_overhead
 from cash_on_hand import cash_on_hand 
 from profit_loss import profit_and_loss 
